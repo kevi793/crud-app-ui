@@ -21,16 +21,17 @@ export class UsersComponent implements OnInit {
 
   addUser(): void {
     console.log('Add user');
+    this.router.navigate(["/user-add"]);
   }
 
   viewUser(user: User): void {
     console.log("View user", user);
-    // this.router.navigate(['/users/' + user.id]);
+    this.router.navigate(['/user-details/' + user.id]);
   }
 
   editUser(user: User): void {
     console.log("View user", user);
-    // this.router.navigate(['/users/edit/' + user.id]);
+    this.router.navigate(['/user-edit/' + user.id]);
   }
 
   deleteUser(user: User): void {

@@ -5,8 +5,8 @@ export interface User {
     firstName: string;
     middleName: string;
     lastName: string;
-    dob: Date;
-    mobile: string;
+    dateOfBirth: Date;
+    mobileNumber: string;
     gender: string;
     customerNumber: string;
     countryOfBirth: string;

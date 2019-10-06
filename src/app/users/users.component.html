@@ -1,3 +1,32 @@
-<p>
-  users works!
-</p>
+<ng-container *ngIf="users$">
+
+<div class="col-md-12 user-container">
+    <h2>User Details</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Date Of Birth</th>
+        <th>Mobile</th>
+        <th>Gender</th>
+        <th><button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.dateOfBirth}}</td>
+        <td>{{user.mobileNumber}}</td>
+        <td>{{user.gender}}</td>
+        <td>
+          <button class="btn btn-success" (click)="viewUser(user)" style="margin-left: 20px;">View</button>
+          <button class="btn btn-success" (click)="editUser(user)" style="margin-left: 20px;">Edit</button>
+          <button class="btn btn-success" (click)="deleteUser(user)" style="margin-left: 20px;">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</ng-container>

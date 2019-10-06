@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +11,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  users$: Observable<User[]>;
+
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.users$ = this.userService.getAllUsersWithAddresses();
+  }
+
+  addUser(): void {
+    console.log('Add user');
+  }
+
+  viewUser(user: User): void {
+    console.log("View user", user);
+    // this.router.navigate(['/users/' + user.id]);
+  }
+
+  editUser(user: User): void {
+    console.log("View user", user);
+    // this.router.navigate(['/users/edit/' + user.id]);
+  }
+
+  deleteUser(user: User): void {
+    this.userService.deleteUser(user.id).subscribe({
+      next: () => {
+        console.log('User deleted: ', user);
+        this.users$ = this.userService.getAllUsersWithAddresses();
+      }
+    });
+
   }
 
 }
